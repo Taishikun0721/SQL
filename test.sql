@@ -9,3 +9,4 @@
 -- 	primary key (shohin_id)
 -- );
 
+alter table shohin add column shohin_mei_kana varchar(100)
