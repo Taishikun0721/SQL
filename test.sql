@@ -1,15 +1,15 @@
--- create table shohin
--- (
--- 	shohin_id char(4) not null,
--- 	shohin_mei varchar(100),
--- 	shohin_bunrui varchar(32),
--- 	hanbai_tanka integer,
--- 	shiire_tanka integer,
--- 	torokubi date,
--- 	primary key (shohin_id)
--- );
+create table shohin
+(
+	shohin_id char(4) not null,
+	shohin_mei varchar(100),
+	shohin_bunrui varchar(32),
+	hanbai_tanka integer,
+	shiire_tanka integer,
+	torokubi date,
+	primary key (shohin_id)
+);
 
--- alter table shohin add column shohin_mei_kana varchar(100)
+alter table shohin add column shohin_mei_kana varchar(100)
 
 begin transaction;
 
@@ -45,3 +45,12 @@ alter table jyushoroku add column yubin_bango char(8) not null;
 
 drop table jyushoroku;
 
+select shohin_id, shohin_mei, shiire_tanka from shohin;
+
+select distinct shohin_bunrui from shohin;
+
+select shohin_mei, shohin_bunrui from shohin where shohin_bunrui = '事務用品';
+
+select shohin_mei, hanbai_tanka, hanbai_tanka * 2 as "hanbai_tanka * 2" from shohin;
+
+select shohin_mei, shohin_bunrui from shohin where hanbai_tanka <> 500;
