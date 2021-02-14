@@ -54,3 +54,68 @@ select shohin_mei, shohin_bunrui from shohin where shohin_bunrui = '事務用品
 select shohin_mei, hanbai_tanka, hanbai_tanka * 2 as "hanbai_tanka * 2" from shohin;
 
 select shohin_mei, shohin_bunrui from shohin where hanbai_tanka <> 500;
+
+
+-- charsテーブル作成
+
+create table chars (
+	chr char(3) not null,
+	primary key (chr)
+);
+
+
+insert into chars values('1');
+insert into chars values('2');
+insert into chars values('3');
+insert into chars values('10');
+insert into chars values('22');
+insert into chars values('222');
+
+
+select chr from chars where chr. > 2;
+
+select shohin_mei, shohin_bunrui, hanbai_tanka from shohin where hanbai_tanka >= 1000;
+
+select shohin_mei, hanbai_tanka from shohin where hanbai_tanka is null;
+
+select shohin_mei, shiire_tanka from shohin
+where shohin_bunrui = 'キッチン用品'
+and hanbai_tanka >= 300
+and shiire_tanka is not null;
+
+select shohin_mei, shiire_tanka from shohin
+where shohin_bunrui = 'キッチン用品'
+or hanbai_tanka >= 300;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
