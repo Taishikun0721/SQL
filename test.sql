@@ -210,3 +210,23 @@ delete from shohin
 where shiire_tanka is null;
 
 drop table shohin;
+
+update shohin
+set torokubi = '2020-10-01';
+
+update shohin
+set shohin_bunrui = 'キッチン用品';
+where shohin_bunrui = '衣服';
+
+update shohin
+set shohin_bunrui = null;
+
+update shohin
+set hanbai_tanka = hanbai_tanka * 10,
+	shiire_tanka = shiire_tanka / 2
+where shohin_bunrui = null;
+
+
+
+
+
