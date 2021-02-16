@@ -135,7 +135,7 @@ order by hanbai_tanka;
 
 select shohin_id, shohin_mei, hanbai_tanka, shiire_tanka
 from shohin
-order by hanbaitanka, shohin_id
+order by hanbaitanka, shohin_id;
 
 
 select shohin_id as id, shohin_mei, hanbai_tanka as tanka, shiire_tanka
@@ -153,10 +153,49 @@ from shohin
 order by torokubi desc, hanbai_tanka;
 
 
+create table shohinIns
+(
+	shohin_id char(4) not null,
+	shohin_mei varchar(100) not null,
+	shohin_bunrui varchar(32) not null,
+	hanbai_tanka integer default 0,
+	shiire_tanka integer,
+	torokubi date,
+	primary key (shohin_id)
+);
 
 
+insert into shohinIns (shohin_id, shohin_mei, shohin_bunrui, hanbai_tanka, shiire_tanka, torokubi)
+values
+('0001', 'Tシャツ', '衣服', 1000, 500, '2009-09-20');
 
+begin transaction;
 
+insert into shohinIns
+values
+('0002', 'ズボン', '衣服', 1000, 500, '2009-09-20');
+insert into shohinIns
+values
+('0003', '包丁', 'キッチン用品', 3000, 2800, '2009-09-20')
 
+commit;
 
+insert into shohinIns
+values
+('0004', 'おろし金', 'キッチン用品', default, 790, '2020-04-28');
 
+create table shohinCopy
+(
+	shohin_id char(4) not null,
+	shohin_mei varchar(100),
+	shohin_bunrui varchar(32),
+	hanbai_tanka integer,
+	shiire_tanka integer,
+	torokubi date,
+	primary key (shohin_id)
+);
+
+insert into shohinCopy
+(shohin_id, shohin_mei, shohin_bunrui, hanbai_tanka, shiire_tanka, torokubi)
+select shohin_id, shohin_mei, shohin_bunrui, hanbai_tanka, shiire_tanka, torokubi
+from shohin;
