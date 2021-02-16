@@ -199,3 +199,14 @@ insert into shohinCopy
 (shohin_id, shohin_mei, shohin_bunrui, hanbai_tanka, shiire_tanka, torokubi)
 select shohin_id, shohin_mei, shohin_bunrui, hanbai_tanka, shiire_tanka, torokubi
 from shohin;
+
+
+
+
+delete from shohin
+where hanbai_tanka >= 4000;
+
+delete from shohin
+where shiire_tanka is null;
+
+drop table shohin;
