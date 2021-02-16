@@ -88,34 +88,28 @@ where shohin_bunrui = 'キッチン用品'
 or hanbai_tanka >= 300;
 
 
+select * from chars
+where chr > '2';
 
 
+select * from shohin
+where not hanbai_tanka > 1000;
+
+select count(*) from shohin;
 
 
+select sum(hanbai_tanka), sum(shiire_tanka) from shohin;
+
+select avg(hanbai_tanka) from shohin;
 
 
+select max(shiire_tanka) from shohin;
 
+select count(shohin_bunrui), count(distinct shohin_bunrui) from shohin;
 
+select shohin_bunrui, count(*) from shohin group by shohin_bunrui;
 
+select shiire_tanka, count(*) from shohin group by shiire_tanka;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+select shiire_tanka from shohin where shohin_bunrui = '衣服' group by shiire_tanka;
 
