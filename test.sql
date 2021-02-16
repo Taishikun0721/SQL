@@ -113,3 +113,50 @@ select shiire_tanka, count(*) from shohin group by shiire_tanka;
 
 select shiire_tanka from shohin where shohin_bunrui = '衣服' group by shiire_tanka;
 
+select shohin_bunrui, count(*)
+from shohin
+group by shohin_bunrui
+having count(*) = 2;
+
+select shohin_bunrui, avg(hanbai_tanka)
+from shohin
+group by shohin_bunrui
+having avg(hanbai_tanka) >= 2500;
+
+
+select shohin_bunrui, count(*)
+from shohin
+where shohin_bunrui = '衣服'
+group by shohin_bunrui;
+
+select shohin_id, shohin_mei, hanbai_tanka, shiire_tanka
+from shohin
+order by hanbai_tanka;
+
+select shohin_id, shohin_mei, hanbai_tanka, shiire_tanka
+from shohin
+order by hanbaitanka, shohin_id
+
+
+select shohin_id as id, shohin_mei, hanbai_tanka as tanka, shiire_tanka
+from shohin
+order by tanka, id;
+
+
+select shohin_bunrui, sum(hanbai_tanka), sum(shiire_tanka)
+from shohin
+group by shohin_bunrui
+having sum(hanbai_tanka) > sum(shiire_tanka) * 1.5;
+
+select *
+from shohin
+order by torokubi desc, hanbai_tanka;
+
+
+
+
+
+
+
+
+
