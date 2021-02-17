@@ -249,3 +249,33 @@ begin transaction;
 	where hanbai_tanka > 1000;
 
 commit;
+
+
+create table shohinSaeki
+(
+	shohin_id char(4) not null,
+	shohin_mei varchar(100) not null,
+	hanbai_tanka integer,
+	shiire_tanka integer,
+	saeki integer,
+	primary key (shohin_id)
+);
+
+insert into shohinSaeki(shohin_id, shohin_mei, hanbai_tanka, shiire_tanka, saeki)
+select shohin_id, shohin_mei, hanbai_tanka, shiire_tanka, hanbai_tanka - shiire_tanka
+from shohin;
+values
+('0001', 'Tシャツ', 1000, 500, hanbai_tanka - shiire_tanka);
+
+begin transaction;
+
+	update shohinSaeki
+	set hanbai_tanka = 1000
+	where shohin_mei = 'おろしがね';
+
+	update shohinSaeki
+	set saeki = hanbai_tanka - shiire_tanka;
+
+commit;
+
+
