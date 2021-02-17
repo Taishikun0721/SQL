@@ -278,4 +278,22 @@ begin transaction;
 
 commit;
 
+create view shohinSum
+(shohin_bunrui, cnt_chohin)
+as
+select shohin_bunrui, count(*)
+from shohin
+group by shohin_bunrui;
 
+
+create view shohincloth
+(shohin_id, shohin_mei, shohin_bunrui, hanbai_tanka, shiire_tanka)
+as
+select shohin_id, shohin_mei, shohin_bunrui, hanbai_tanka, shiire_tanka
+from shohin
+where shohin_bunrui = '衣服';
+
+insert into shohincloth
+values ('0010', 'ワンピース', '衣服', 5000, 3000);
+
+drop view shohincloth;
