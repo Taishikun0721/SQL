@@ -297,3 +297,20 @@ insert into shohincloth
 values ('0010', 'ワンピース', '衣服', 5000, 3000);
 
 drop view shohincloth;
+
+select shohin_bunrui, cnt_shohin
+from
+	(
+		select shohin_bunrui, count(*) as cnt_shohin
+		from shohin
+		group by shohin_bunrui
+	) as shohinBunrui;
+
+select shohin_bunrui, sum_shiire
+from
+	(
+		select shohin_bunrui, sum(shiire_tanka) as sum_shiire
+		from shohin
+		group by shohin_bunrui
+	) as shohinSum;
+
