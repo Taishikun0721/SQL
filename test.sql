@@ -314,3 +314,13 @@ from
 		group by shohin_bunrui
 	) as shohinSum;
 
+select shohin_mei, hanbai_tanka
+from shohin
+where hanbai_tanka >
+(
+	select avg(hanbai_tanka)
+	from shohin
+);
+
+select shohin_id, shohin_mei, hanbai_tanka, (select avg(hanbai_tanka) from shohin)
+from shohin;
