@@ -228,5 +228,24 @@ where shohin_bunrui = null;
 
 
 
+begin transaction;
 
+	update shohin
+	set hanbai_tanka = hanbai_tanka - 1000
+	where shohin_mei = 'カッターシャツ';
 
+	update shohin
+	set hanbai_tanka = hanbai_tanka + 1000
+	where shohin_mei =  'Tシャツ';
+
+commit;
+
+begin transaction;
+
+	delete from shohin
+	where shohin_mei = 'カッターシャツ';
+
+	delete from shohin
+	where hanbai_tanka > 1000;
+
+commit;
