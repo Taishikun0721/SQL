@@ -427,3 +427,24 @@ select current_time;
 
 select str1, coalesce(str1, '井之口')
 from SampleStr;
+
+select *
+from SampleLike
+where strcol like 'ddd%';
+
+select *
+from SampleStr
+where str1 like '%a%';
+
+select *
+from SampleStr
+where strcol like '%ddd';
+
+select *
+from SampleStr
+where strcol like '%ddd%';
+
+select *
+from SampleLike
+where strcol like 'abc___';
+
