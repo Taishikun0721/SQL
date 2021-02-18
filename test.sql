@@ -448,3 +448,36 @@ select *
 from SampleLike
 where strcol like 'abc___';
 
+select shohin_mei, hanbai_tanka
+from shohin
+where hanbai_tanka between 3500 and 7000;
+
+select shohin_mei, shiire_tanka
+from shohin
+where shiire_tanka = 320
+or shiire_tanka = 500
+or shiire_tanka = 5000;
+
+
+select shohin_mei, shiire_tanka
+from shohin
+where shiire_tanka in (320, 500, 5000);
+
+create table tenposhohin
+(
+	tenpo_id char(4) not null,
+	tenpo_mei varchar(200) not null,
+	shohin_id char(4) not null,
+	suryo integer not null,
+	primary key (tenpo_id, shohin_id)
+);
+
+
+select shohin_id, shohin_mei, hanbai_tanka
+from shohin
+where shohin_id in (select shohin_id from tenposhohin where tenpo_id = '000C');
+
+select shohin_id, shohin_mei, hanbai_tanka
+from shohin
+where shohin_id not in (select shohin_id from tenposhohin where tenpo_id = '000A');
+
