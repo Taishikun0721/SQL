@@ -339,3 +339,91 @@ where hanbai_tanka >
 	group by shohin_bunrui
 );
 
+create table samplemath
+(
+	m numeric (10,3),
+	n integer,
+	p integer
+);
+
+
+begin transaction;
+
+insert into samplemath(m, n, p) values (500, 0, null);
+insert into samplemath(m, n, p) values (-180, 0, null);
+insert into samplemath(m, n, p) values (null, null, null);
+insert into samplemath(m, n, p) values (null, 0, null);
+insert into samplemath(m, n, p) values (null, 7,    3);
+insert into samplemath(m, n, p) values (null, 5,    2);
+insert into samplemath(m, n, p) values (null, 4,    null);
+insert into samplemath(m, n, p) values (8,      null, 3);
+insert into samplemath(m, n, p) values (2.27, 1,    null);
+insert into samplemath(m, n, p) values (5.555, 2,   null);
+insert into samplemath(m, n, p) values (null, 1,    null);
+insert into samplemath(m, n, p) values (8.76, null, null);
+
+commit;
+
+select m, abs(m) as abs_col
+from samplemath;
+
+
+select n, p, mod(n, p) as mod_col
+from samplemath;
+
+
+select n, p, mod(n, p) as mod_col
+from samplemath
+where not n is null;
+
+select m, round(m) as round_col
+from samplemath;
+
+select m, round(m, 2) as round_col
+from samplemath;
+
+CREATE TABLE SampleStr
+(str1  VARCHAR(40),
+ str2  VARCHAR(40),
+ str3  VARCHAR(40));
+
+BEGIN TRANSACTION;
+
+INSERT INTO SampleStr (str1, str2, str3) VALUES ('あいう',	'えお'	,	NULL);
+INSERT INTO SampleStr (str1, str2, str3) VALUES ('abc'	,	'def'	,	NULL);
+INSERT INTO SampleStr (str1, str2, str3) VALUES ('山田'	,	'太郎'  ,	'です');
+INSERT INTO SampleStr (str1, str2, str3) VALUES ('aaa'	,	NULL    ,	NULL);
+INSERT INTO SampleStr (str1, str2, str3) VALUES (NULL	,	'あああ',	NULL);
+INSERT INTO SampleStr (str1, str2, str3) VALUES ('@!#$%',	NULL	,	NULL);
+INSERT INTO SampleStr (str1, str2, str3) VALUES ('ABC'	,	NULL	,	NULL);
+INSERT INTO SampleStr (str1, str2, str3) VALUES ('aBC'	,	NULL	,	NULL);
+INSERT INTO SampleStr (str1, str2, str3) VALUES ('abc太郎',	'abc'	,	'ABC');
+INSERT INTO SampleStr (str1, str2, str3) VALUES ('abcdefabc','abc'	,	'ABC');
+INSERT INTO SampleStr (str1, str2, str3) VALUES ('ミックマック',	'っ', 'ツ');
+
+COMMIT;
+
+select str1, str2, str1 || str2 as str_concat
+from SampleStr;
+
+select str1, length(str1)
+from SampleStr;
+
+select str1, lower(str1)
+from SampleStr;
+
+select str2, substring(str2, 2)
+from SampleStrl;
+
+select str1, str2, upper(str1) || upper(str2)
+from SampleStr
+where str2 is not null
+and
+str1 is not null;
+
+select current_date;
+
+select current_time;
+
+select str1, coalesce(str1, '井之口')
+from SampleStr;
