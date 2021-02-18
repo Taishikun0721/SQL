@@ -481,3 +481,34 @@ select shohin_id, shohin_mei, hanbai_tanka
 from shohin
 where shohin_id not in (select shohin_id from tenposhohin where tenpo_id = '000A');
 
+
+select shohin_mei,
+case when shohin_bunrui = '衣服'
+	then 'A:' || shohin_bunrui
+	when shohin_bunrui = '事務用品'
+	then 'B:' || shohin_bunrui
+	when shohin_bunrui = 'キッチン用品'
+	then 'C:' || shohin_bunrui
+end
+from shohin;
+
+select
+sum(case when shohin_bunrui = '衣服' then hanbai_tanka else 0 end) as sum_tanka_ihuku,
+sum(case when shohin_bunrui = '事務用品' then hanbai_tanka else 0 end) as sum_tanka_jim,
+sum(case when shohin_bunrui = 'キッチン用品' then hanbai_tanka else 0 end) as sum_kitchen_tanka
+from shohin;
+
+select shohin_mei, shiire_tanka
+from shohin
+where shiire_tanka not in (500, 2800, 5000);
+
+
+select shohin_mei, shiire_tanka
+from shohin
+where shiire_tanka not in (500, 2800, 5000, null);
+
+select
+	count(case when hanbai_tanka <= 1000 then hanbai_tanka end) as low_price,
+	count(case when hanbai_tanka >= 1001 and hanbai_tanka <= 3000 then hanbai_tanka end) as mid_price,
+	count(case when hanbai_tanka >= 3001 then hanbai_tanka end) as high_price
+from shohin;
