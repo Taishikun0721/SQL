@@ -324,3 +324,18 @@ where hanbai_tanka >
 
 select shohin_id, shohin_mei, hanbai_tanka, (select avg(hanbai_tanka) from shohin)
 from shohin;
+
+select shohin_bunrui, avg(hanbai_tanka)
+from shohin
+group by shohin_bunrui;
+
+select shohin_bunrui, shohin_mei, hanbai_tanka
+from shohin as S1
+where hanbai_tanka >
+(
+	select avg(hanbai_tanka)
+	from shohin as S2
+	where S1.shohin_bunrui = S2.shohin_bunrui
+	group by shohin_bunrui
+);
+
