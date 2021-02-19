@@ -512,3 +512,33 @@ select
 	count(case when hanbai_tanka >= 1001 and hanbai_tanka <= 3000 then hanbai_tanka end) as mid_price,
 	count(case when hanbai_tanka >= 3001 then hanbai_tanka end) as high_price
 from shohin;
+
+select shohin_id, shohin_mei
+from shohin
+union
+select shohin_id, shohin_mei
+from shohin2;
+
+select shohin_mei, shohin_id
+from shohin
+union
+select shohin_bunrui, shohin_id
+from shohin2;
+
+select shohin_id, shohin_mei
+from shohin
+intersect
+select shohin_id, shohin_mei
+from shohin2;
+
+select shohin_id, shohin_mei
+from shohin;
+
+select shohin_id, shohin_mei
+from shohin2;
+
+select shohin_id, shohin_mei
+from shohin
+except
+select shohin_id, shohin_mei
+from shohin2;
