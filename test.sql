@@ -542,3 +542,27 @@ from shohin
 except
 select shohin_id, shohin_mei
 from shohin2;
+
+select ts.tenpo_id, ts.tenpo_mei, ts.shohin_id, s.shohin_mei, s.hanbai_tanka
+from tenposhohin as ts
+inner join shohin as s
+on ts.shohin_id = s.shohin_id;
+
+select ts.tenpo_id, ts.tenpo_mei, ts.shohin_id, s.shohin_mei, s.hanbai_tanka
+from tenposhohin as ts
+inner join shohin as s
+on ts.shohin_id = s.shohin_id
+where ts.tenpo_id = '000A';
+
+select ts.tenpo_id, ts.tenpo_mei, ts.shohin_id, s.shohin_mei, s.hanbai_tanka
+from tenposhohin as ts
+inner join shohin as s
+on ts.shohin_id = s.shohin_id
+where s.hanbai_tanka < 1000;
+
+
+select ts.tenpo_id, ts.tenpo_mei, ts.shohin_id, s.shohin_mei, s.hanbai_tanka
+from tenposhohin as ts
+right join shohin as s
+on ts.shohin_id = s.shohin_id;
+
