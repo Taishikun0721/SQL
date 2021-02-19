@@ -566,3 +566,19 @@ from tenposhohin as ts
 right join shohin as s
 on ts.shohin_id = s.shohin_id;
 
+select ts.tenpo_id, ts.tenpo_mei, ts.shohin_id, s.shohin_mei, s.hanbai_tanka, zs.zaiko_suryo
+from tenposhohin as ts
+inner join shohin as s
+on ts.shohin_id = s.shohin_id
+	inner join ZaikoShohin as zs
+	on ts.shohin_id = zs.shohin_id
+where zs.souko_id = 'S001';
+
+select ts.tenpo_mei, s.shohin_mei, sum(zs.zaiko_suryo)
+from tenposhohin as ts
+	inner join shohin as s
+		on ts.shohin_id = s.shohin_id
+		inner join ZaikoShohin as zs
+			on ts.shohin_id = zs.shohin_id
+where ts.tenpo_id = '000A'
+group by ts.tenpo_mei, s.shohin_mei;
