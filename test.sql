@@ -582,3 +582,21 @@ from tenposhohin as ts
 			on ts.shohin_id = zs.shohin_id
 where ts.tenpo_id = '000A'
 group by ts.tenpo_mei, s.shohin_mei;
+
+select ts.shohin_id, ts.tenpo_mei, ts.shohin_id, s.shohin_mei
+from tenposhohin as ts
+cross join shohin as s;
+
+select count(*) from tenposhohin cross join shohin;
+
+select * from shohin
+union
+select * from shohin
+intersect
+select * from shohin;
+
+select coalesce(ts.tenpo_id, '不明'), coalesce(ts.tenpo_mei, '不明'), coalesce(ts.shohin_id, '不明'), s.shohin_mei, s.hanbai_tanka
+from tenposhohin as ts
+right outer join shohin as s
+on ts.shohin_id = s.shohin_id;
+
