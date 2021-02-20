@@ -600,3 +600,7 @@ from tenposhohin as ts
 right outer join shohin as s
 on ts.shohin_id = s.shohin_id;
 
+select shohin_mei, shohin_bunrui, hanbai_tanka,
+rank () over (partition by shohin_bunrui order by hanbai_tanka) as ranking
+from shohin
+order by shohin_bunrui;
