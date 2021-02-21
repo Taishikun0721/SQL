@@ -605,6 +605,36 @@ rank () over (partition by shohin_bunrui order by hanbai_tanka) as ranking
 from shohin
 order by shohin_bunrui;
 
+select distinct departments.dept_name, employees.first_name
+from departments
+inner join dept_emp on departments.dept_no = dept_emp.dept_no
+inner join employees on dept_emp.emp_no = employees.emp_no
+where departments.dept_no = 'd001'
+limit 100
+order by employees.first_name;
+
+
+select departments.dept_name
+from departments
+where dept_no = 'd001';
+
+select * from current_dept_emp
+limit 10;
+
+select cde.emp_no, e.first_name, cde.to_date from current_dept_emp as cde
+inner join employees as e
+on cde.emp_no = e.emp_no
+where cde.to_date < curdate()
+limit 10;
+
+select distinct d.dept_name, dm.emp_no, e.first_namee
+from departments as d
+inner join dept_manager as dm
+on d.dept_no = dm.dept_no
+inner join employees as e
+on dm.emp_no = e.emp_no
+limit 10;
+
 
 +----------------------+-------------+---------------+-------------+------------+----------------+-------+
 | TABLE_NAME           | COLUMN_NAME | COLUMN_TYPE   | IS_NULLABLE | COLUMN_KEY | COLUMN_DEFAULT | EXTRA |
@@ -660,3 +690,32 @@ order by shohin_bunrui;
 | v_full_employees     | hire_date   | date          | NO          |            | NULL           |       |
 | v_full_employees     | department  | varchar(40)   | YES         |            | NULL           |       |
 +----------------------+-------------+---------------+-------------+------------+----------------+-------+
+
+
+select
+    case when id = 1 or id = 2 or id = 3
+    then upper(nickname)
+    else nickname
+    end
+from users;
+
+select c.name, f.id, f.description
+from categories as c
+inner join foods as f
+on c.id = f.category_id
+inner join users as u
+on f.user_id = u.id
+where u.id = 3;
+
+select u.id as user_id, u.nickname, count(f.*)
+from foods as f
+inner join users as u
+on f.user_id = u.id
+group by u.id, u.nickname
+order by u.id;
+
+select c.name, count(f.*)
+from categories as c
+inner join foods as f
+on c.id = f.category_id
+group  by c.name;
