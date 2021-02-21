@@ -604,3 +604,59 @@ select shohin_mei, shohin_bunrui, hanbai_tanka,
 rank () over (partition by shohin_bunrui order by hanbai_tanka) as ranking
 from shohin
 order by shohin_bunrui;
+
+
++----------------------+-------------+---------------+-------------+------------+----------------+-------+
+| TABLE_NAME           | COLUMN_NAME | COLUMN_TYPE   | IS_NULLABLE | COLUMN_KEY | COLUMN_DEFAULT | EXTRA |
++----------------------+-------------+---------------+-------------+------------+----------------+-------+
+| current_dept_emp     | emp_no      | int(11)       | NO          |            | NULL           |       |
+| current_dept_emp     | dept_no     | char(4)       | NO          |            | NULL           |       |
+| current_dept_emp     | from_date   | date          | YES         |            | NULL           |       |
+| current_dept_emp     | to_date     | date          | YES         |            | NULL           |       |
+
+| departments          | dept_no     | char(4)       | NO          | PRI        | NULL           |       |
+| departments          | dept_name   | varchar(40)   | NO          | UNI        | NULL           |       |
+
+| dept_emp             | emp_no      | int(11)       | NO          | PRI        | NULL           |       |
+| dept_emp             | dept_no     | char(4)       | NO          | PRI        | NULL           |       |
+| dept_emp             | from_date   | date          | NO          |            | NULL           |       |
+| dept_emp             | to_date     | date          | NO          |            | NULL           |       |
+
+| dept_emp_latest_date | emp_no      | int(11)       | NO          |            | NULL           |       |
+| dept_emp_latest_date | from_date   | date          | YES         |            | NULL           |       |
+| dept_emp_latest_date | to_date     | date          | YES         |            | NULL           |       |
+
+| dept_manager         | emp_no      | int(11)       | NO          | PRI        | NULL           |       |
+| dept_manager         | dept_no     | char(4)       | NO          | PRI        | NULL           |       |
+| dept_manager         | from_date   | date          | NO          |            | NULL           |       |
+| dept_manager         | to_date     | date          | NO          |            | NULL           |       |
+
+| employees            | emp_no      | int(11)       | NO          | PRI        | NULL           |       |
+| employees            | birth_date  | date          | NO          |            | NULL           |       |
+| employees            | first_name  | varchar(14)   | NO          |            | NULL           |       |
+| employees            | last_name   | varchar(16)   | NO          |            | NULL           |       |
+| employees            | gender      | enum('M','F') | NO          |            | NULL           |       |
+| employees            | hire_date   | date          | NO          |            | NULL           |       |
+
+| salaries             | emp_no      | int(11)       | NO          | PRI        | NULL           |       |
+| salaries             | salary      | int(11)       | NO          |            | NULL           |       |
+| salaries             | from_date   | date          | NO          | PRI        | NULL           |       |
+| salaries             | to_date     | date          | NO          |            | NULL           |       |
+
+| titles               | emp_no      | int(11)       | NO          | PRI        | NULL           |       |
+| titles               | title       | varchar(50)   | NO          | PRI        | NULL           |       |
+| titles               | from_date   | date          | NO          | PRI        | NULL           |       |
+| titles               | to_date     | date          | YES         |            | NULL           |       |
+
+| v_full_departments   | dept_no     | char(4)       | NO          |            | NULL           |       |
+| v_full_departments   | dept_name   | varchar(40)   | NO          |            | NULL           |       |
+| v_full_departments   | manager     | varchar(32)   | YES         |            | NULL           |       |
+
+| v_full_employees     | emp_no      | int(11)       | NO          |            | NULL           |       |
+| v_full_employees     | first_name  | varchar(14)   | NO          |            | NULL           |       |
+| v_full_employees     | last_name   | varchar(16)   | NO          |            | NULL           |       |
+| v_full_employees     | birth_date  | date          | NO          |            | NULL           |       |
+| v_full_employees     | gender      | enum('M','F') | NO          |            | NULL           |       |
+| v_full_employees     | hire_date   | date          | NO          |            | NULL           |       |
+| v_full_employees     | department  | varchar(40)   | YES         |            | NULL           |       |
++----------------------+-------------+---------------+-------------+------------+----------------+-------+
