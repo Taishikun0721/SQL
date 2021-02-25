@@ -636,6 +636,9 @@ on dm.emp_no = e.emp_no
 limit 10;
 
 
+
+alter table current_dept_emp add column test char(8) not null;
+
 +----------------------+-------------+---------------+-------------+------------+----------------+-------+
 | TABLE_NAME           | COLUMN_NAME | COLUMN_TYPE   | IS_NULLABLE | COLUMN_KEY | COLUMN_DEFAULT | EXTRA |
 +----------------------+-------------+---------------+-------------+------------+----------------+-------+
@@ -749,3 +752,45 @@ select pref_name, sum(case when sex = '1' then population else 0 end) as cnt_m,
 sum(case when sex = '2' then population else 0 end) as cnt_f
 from PopTbl2
 group by pref_name;
+
+
+create table testsal
+	sex chr(1),
+	salary integer,
+	constraint check_salary check
+	(
+		case when sex = '2'
+		then case when salary <= 200000
+		then 1 else 0 end
+	)
+
+-- 普通のインサートとバルクインサートを試して見た。
+
+-- 普通のインサート
+-- require 'benchmark'
+-- ActiveRecord::Base.transaction do
+--   result = Benchmark.realtime do
+--     1000.times do
+--       current_user = User.find(User.all.map(&:id).sample(1))
+--       Food.create!(description: Faker::Movies::StarWars.wookie_sentence, category_id: Category.all.map(&:id).sample(1).first, user_id: current_user.first.id)
+--     end
+--   end
+--   puts "処理時間: #{result}秒"
+-- end
+
+
+-- バルクインサート
+
+-- require 'benchmark'
+-- ActiveRecord::Base.transaction do
+--   result = Benchmark.realtime do
+--     foods = []
+--     1000.times do
+--       current_user = User.find(User.all.map(&:id).sample(1))
+--       foods << Food.new(description: Faker::Movies::StarWars.wookie_sentence, category_id: Category.all.map(&:id).sample(1).first, user_id: current_user.first.id)
+--     end
+--     Food.import(foods)
+--   end
+--   puts "処理時間: #{result}秒"
+-- end
+
