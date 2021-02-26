@@ -794,3 +794,40 @@ create table testsal
 --   puts "処理時間: #{result}秒"
 -- end
 
+select pref_name , population
+from PopTbl
+where sex = '2';
+
+create table Personnel
+(name varchar(30) primary key,
+salary integer not null);
+
+
+begin transaction;
+
+insert into Personnel
+values ('相田', 300000);
+insert into Personnel
+values ('神崎', 270000);
+insert into Personnel
+values ('木村', 220000);
+insert into Personnel
+values ('斎藤', 290000);
+
+commit;
+
+update Personnel
+set salary = salary * 0.9
+where salary >= 300000;
+
+update Personnel
+set salary = salary * 1.1
+where name = '相田';
+
+update Personnel
+set salary = case when salary >= 300000
+			then salary * 0.9
+			when salary >= 250000 and salary < 280000
+			then salary * 1.2
+			else salary end;
+
