@@ -840,3 +840,50 @@ set p_key = case when p_key = 'a'
 			else p_key end
 where p_key in ('a', 'b');
 
+select course_name,
+	case when course_id in
+	(select course_id from OpenCourses where month = 200706) then '○'
+	else '×' end as "6月",
+	case when course_id in
+	(select course_id from OpenCourses where month = 200707) then '○'
+	else 'x️' end as "7月",
+	case when course_id in
+	(select course_id from OpenCourses where month = 200708) then '○'
+	else 'x️' end as "8月"
+from CourseMaster;
+
+
+select case foods.user_id
+        when '1' then 'ユーザー１のグループ'
+        when '2' then 'ユーザー2のグループ'
+        when '3' then 'ユーザー3のグループ'
+        when '4' then 'ユーザー4のグループ'
+        when '5' then 'ユーザー5のグループ'
+        when '6' then 'ユーザー6のグループ'
+        when '7' then 'ユーザー7のグループ'
+        when '8' then 'ユーザー8のグループ'
+        when '9' then 'ユーザー9のグループ'
+        when '10' then 'ユーザー10のグループ'
+        else '0' end as user_group
+, count(foods.*)
+from foods
+group by foods.user_id
+order by foods.user_id;
+
+select distinct users.id ,
+        case when users.id in (select user_id from comments where food_id = 1) then '○'
+        else 'なし' end as "food_id 1 へのコメント",
+        case when users.id in (select user_id from comments where food_id = 2) then '○'
+        else 'なし' end as "food_id 2 へのコメント",
+        case when users.id in (select user_id from comments where food_id = 3) then '○'
+        else 'なし' end as "food_id 3 へのコメント"
+from users inner join comments on users.id = comments.user_id
+order by users.id;
+
+-- 投稿に対して、どのユーザーがコメントしたか○×で出すSQL
+
+
+select comments.food_id, count(*)
+from comments
+where comments.food_id < 10
+group by comments.food_id
